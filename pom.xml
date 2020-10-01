@@ -50,6 +50,12 @@
         <artifactId>commons-dbutils</artifactId>
         <version>1.7</version>
     </dependency>
+
+    <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>1.6.8.RELEASE</version>
+    </dependency>
 </dependencies>
 
 </project>

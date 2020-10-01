@@ -24,7 +24,8 @@ public class AccountServiceTest {
     @Before
     public void setUp(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
-        accountService = applicationContext.getBean("proxyAccountService",AccountService.class);
+        accountService = applicationContext.getBean("accountService",AccountService.class);
+        System.out.println("Test is start...");
     }
 
     @After
@@ -52,5 +53,14 @@ public class AccountServiceTest {
     @Test
     public void transfer(){
         accountService.transfer("test","huahua",2345d);
+    }
+
+    @Test
+    public void updateAccount() {
+        Account account = new Account();
+        account.setId(6);
+        account.setName("大橘");
+        account.setMoney(100000d);
+        accountService.updateAccount(account);
     }
 }

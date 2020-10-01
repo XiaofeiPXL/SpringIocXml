@@ -37,14 +37,19 @@ public class beanFactory {
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 Object returnValue;
                 try{
+                    //前置通知
                     transactionManager.beginTransaction();
+                    //明确的切入点方法调用
                     returnValue = method.invoke(accountService,args);
+                    //后置通知
                     transactionManager.CommitTransaction();
                     return returnValue;
                 }catch(Exception e){
+                    //异常通知
                     transactionManager.RollbackTransaction();
                     throw new RuntimeException(e);
                 }finally{
+                    //最终通知
                     transactionManager.closeTransaction();
                 }
             }

@@ -30,19 +30,20 @@ public class AccountServiceImpl implements AccountService {
     }
 
     public void transfer(String sourceName, String targetName, Double money) {
-        System.out.println(
-                "转账开始"
-        );
         //确定转出账户
         Account sourceAccount = accountDao.findAccountByName(sourceName);
         //确定转入账户
         Account targetAccount = accountDao.findAccountByName(targetName);
         //修改转出账户金额
-        sourceAccount.setMoney(sourceAccount.getMoney()-money);
+        sourceAccount.setMoney(sourceAccount.getMoney() - money);
         //修改转入账户金额
-        targetAccount.setMoney(targetAccount.getMoney()+money);
+        targetAccount.setMoney(targetAccount.getMoney() + money);
         //保存更改
-        accountDao.saveAccount(sourceAccount);
-        accountDao.saveAccount(targetAccount);
+        accountDao.updateAccount(sourceAccount);
+        accountDao.updateAccount(targetAccount);
+    }
+
+    public void updateAccount(Account account) {
+        accountDao.updateAccount(account);
     }
 }

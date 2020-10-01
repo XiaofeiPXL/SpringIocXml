@@ -33,4 +33,10 @@ public interface AccountDao {
      * @return 对应的唯一账户
      */
     Account findAccountByName(String username);
+
+    /**
+     * 修改账户信息
+     * @param account 需要修改的账户信息
+     */
+    void updateAccount(Account account);
 }

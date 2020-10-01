@@ -24,4 +24,10 @@ public interface AccountService {
      * @param money 金额
      */
     void transfer(String sourceName,String targetName,Double money);
+
+    /**
+     * 修改对应的账户信息
+     * @param account 需要修改的账户
+     */
+    void updateAccount(Account account);
 }

@@ -51,7 +51,7 @@ public class AccountDaoImpl implements AccountDao {
     public Account findAccountByName(String username) {
         try {
             List<Account> account = queryRunner.query(connectionUtils.getThreadConnection(), "select * from account where name = ?",new BeanListHandler<Account>(Account.class),username);
-            if(account.size()==0 || account==null){
+            if(account.size() == 0){
                 return null;
             }
             if(account.size()>1){
@@ -60,6 +60,14 @@ public class AccountDaoImpl implements AccountDao {
             return account.get(0);
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void updateAccount(Account account) {
+        try {
+            queryRunner.update(connectionUtils.getThreadConnection(), "update account set name = ?,money = ? where id = ?",account.getName(),account.getMoney(),account.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

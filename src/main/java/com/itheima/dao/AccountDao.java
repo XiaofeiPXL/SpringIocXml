@@ -26,4 +26,11 @@ public interface AccountDao {
      * @param account 账户对象
      */
     void saveAccount(Account account);
+
+    /**
+     * 根据用户名查询账户
+     * @param username 账户名称
+     * @return 对应的唯一账户
+     */
+    Account findAccountByName(String username);
 }

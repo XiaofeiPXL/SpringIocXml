@@ -16,4 +16,12 @@ public interface AccountService {
     List<Account> findAll();
 
     void saveAccount(Account account);
+
+    /**
+     * 转账
+     * @param sourceName 转出账户
+     * @param targetName 转入账户
+     * @param money 金额
+     */
+    void transfer(String sourceName,String targetName,Double money);
 }

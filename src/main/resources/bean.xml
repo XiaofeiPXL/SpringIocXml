@@ -3,12 +3,30 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="beanFactory" class="com.itheima.factory.beanFactory">
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="accountService" ref="accountService"/>
+    </bean>
+    <!--注入accoutService的代理对象-->
+    <bean id="proxyAccountService" factory-bean="beanFactory" factory-method="getAccountService"/>
     <bean id="accountService" class="com.itheima.service.impl.AccountServiceImpl">
         <property name="accountDao" ref="accountDao"/>
     </bean>
 
     <bean id="accountDao" class="com.itheima.dao.impl.AccountDaoImpl">
+        <property name="connectionUtils" ref="connectionUtils"/>
+        <!--注入connectionUtils工具类-->
         <property name="queryRunner" ref="queryRunner"/>
+    </bean>
+
+    <bean id="connectionUtils" class="com.itheima.utils.ConnectionUtils">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="transactionManager" class="com.itheima.utils.TransactionManager">
+        <property name="connectionUtils" ref="connectionUtils"/>
     </bean>
 
     <bean id="queryRunner" class="org.apache.commons.dbutils.QueryRunner">

@@ -11,7 +11,6 @@ import java.util.List;
  * @created: 2020/09/29 20:51
  */
 
-
 public interface AccountDao {
     /**
      * 查询所有账户

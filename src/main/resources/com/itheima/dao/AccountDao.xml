@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.dao.AccountDao">
+    <resultMap id="accountMap" type="account">
+        <id property="id" column="id"/>
+        <result property="name" column="NAME"/>
+        <result property="money" column="money"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="accountMap">
+       select * from account;
+   </select>
+
+    <insert id="saveAccount" parameterType="account">
+        insert into account (NAME,money) values(#{name},#{money});
+    </insert>
+
+
+    <update id="updateAccount" parameterType="account">
+        update account set NAME=#{name},money=#{money} where id=#{id};
+    </update>
+
+    <select id="findAccountByName" parameterType="string" resultMap="accountMap">
+        select * from account where NAME = #{name};
+    </select>
+</mapper>

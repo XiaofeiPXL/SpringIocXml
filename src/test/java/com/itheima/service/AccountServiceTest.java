@@ -4,6 +4,7 @@ import com.itheima.entity.Account;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -19,11 +20,12 @@ import java.util.List;
 
 
 public class AccountServiceTest {
+    @Autowired
     private AccountService accountService;
 
     @Before
     public void setUp(){
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         accountService = applicationContext.getBean("accountService",AccountService.class);
         System.out.println("Test is start...");
     }
@@ -45,7 +47,7 @@ public class AccountServiceTest {
     @Test
     public void saveAccount() {
         Account account = new Account();
-        account.setName("huahua");
+        account.setName("xiaolin");
         account.setMoney(10000d);
         accountService.saveAccount(account);
     }
@@ -60,7 +62,7 @@ public class AccountServiceTest {
         Account account = new Account();
         account.setId(6);
         account.setName("大橘");
-        account.setMoney(100000d);
+        account.setMoney(12345d);
         accountService.updateAccount(account);
     }
 }
